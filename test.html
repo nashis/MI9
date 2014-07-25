@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test the parse show data API</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <textarea id="req_cont" rows="20" cols="500"></textarea>
+        <input id="btn_fetch_data" type="button" value="Get Data" />
+        <textarea id="resp_cont" rows="20" cols="500"></textarea>
+        <script type="text/JavaScript">
+            document.getElementById("btn_fetch_data").onclick = function (e) {
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "http://localhost:8888/MI9/");
+                var data = document.getElementById("req_cont").value;
+                xhr.setRequestHeader("Content-type", "text/plain");
+                xhr.send(data);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+                        document.getElementById("resp_cont").innerText = xhr.responseText;
+                    }
+                }
+            }
+        </script>
+    </body>
+
+</html>
